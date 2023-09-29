@@ -8,7 +8,7 @@ async function seedDatabase() {
       // add user
       const user = { username:  `user${i}`, email: `user${i}@gmail.com` };
       const options = { upsert: true, new: true };
-      const createdUser = await user.findOneAndUpdate(user, {}, options);
+      const createdUser = await User.findOneAndUpdate(user, {}, options);
       
       // add item to user
       const item = {
@@ -17,7 +17,7 @@ async function seedDatabase() {
         description: `description ${i}`,
         seller: createdUser,
       };
-      const createdItem = await item.findOneAndUpdate(item, {}, options);
+      const createdItem = await Item.findOneAndUpdate(item, {}, options);
       
       // add comments to item
       if (!createdItem?.comments?.length) {
